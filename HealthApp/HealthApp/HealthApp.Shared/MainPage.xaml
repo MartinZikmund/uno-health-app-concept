@@ -14,12 +14,12 @@
                 <ResourceDictionary x:Key="Default">
                     <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#000000" />
                     <SolidColorBrush x:Key="ContentBackgroundBrush" Color="#1F1F1F" />
-                    <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" TintColor="Pink" TintOpacity="0.5" />
+                    <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" TintColor="#320821" BackgroundSource="HostBackdrop" TintOpacity="0.85" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#FFFFFF" />
                     <SolidColorBrush x:Key="ContentBackgroundBrush" Color="#F4F4F4" />
-                    <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" TintColor="Pink" TintOpacity="0.5" />
+                    <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" TintColor="Pink" BackgroundSource="HostBackdrop" TintOpacity="0.85" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
@@ -81,7 +81,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Grid Padding="12" Background="{ThemeResource HeaderBackgroundBrush}" ColumnSpacing="12">
+                    <Grid Padding="24" Background="{ThemeResource HeaderBackgroundBrush}" ColumnSpacing="12">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="32" />
                             <ColumnDefinition Width="*" />

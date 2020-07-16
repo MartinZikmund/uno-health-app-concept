@@ -69,6 +69,9 @@
     <Reference Include="System.Memory" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>6.1.0-build.178.gc768b0f669</Version>
+    </PackageReference>
     <PackageReference Include="Uno.UI" Version="3.0.0-dev.783" />
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.783" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />

@@ -21,6 +21,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HistoryItemViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
@@ -30,6 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Hearing.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Fire.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Ear.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Dumbbell.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Summary.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Sleep.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Heart.png" />

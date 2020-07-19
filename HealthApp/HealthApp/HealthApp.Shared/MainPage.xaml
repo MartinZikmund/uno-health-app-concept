@@ -222,13 +222,14 @@
                 </winui:NavigationViewItem>
             </winui:NavigationView.MenuItems>
             <winui:NavigationView.PaneFooter>
-                <Grid Margin="48,0">
-                    <controls:RadialProgressBar Width="120" Height="120" Thickness="10" Value="85" Maximum="100" />
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Text="7,810" TextAlignment="Center" FontSize="24" FontWeight="SemiBold" />
-                        <TextBlock Text="10,000" Opacity="0.5" TextAlignment="Center" />
-                    </StackPanel>
-                </Grid>
+                <StackPanel Margin="48,0">
+                    <Grid Margin="0,0,0,4">
+                        <TextBlock HorizontalAlignment="Center" Text="7,810" FontWeight="Light" TextAlignment="Center" FontSize="36" />
+                        <TextBlock Text="10,000" FontSize="12" FontWeight="Light" Opacity="0.5" TextAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+                    </Grid>
+                    <winui:ProgressBar Foreground="{StaticResource SystemColorControlAccentBrush}" Value="0.781" Maximum="1" />
+
+                </StackPanel>
             </winui:NavigationView.PaneFooter>
             <winui:NavigationView.Content>
                 <Grid RowSpacing="16">

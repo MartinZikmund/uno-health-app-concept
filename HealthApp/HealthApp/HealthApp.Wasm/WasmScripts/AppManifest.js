@@ -1,7 +1,7 @@
 ﻿var UnoAppManifest = {
 
     splashScreenImage: "Assets/SplashScreen.png",
-    splashScreenColor: "#0078D7",
-    displayName: "HealthApp"
+    splashScreenColor: "#333333",
+    displayName: "Uno Health"
 
 }

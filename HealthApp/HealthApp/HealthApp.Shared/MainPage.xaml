@@ -31,6 +31,10 @@
                         <GradientStop Offset="0.0" Color="#3e2228" />
                         <GradientStop Offset="1.0" Color="#2c2133" />
                     </not_win:LinearGradientBrush>
+                    <LinearGradientBrush x:Key="NavigationViewDefaultPaneBackground" StartPoint="0.8,0" EndPoint="0.2,1">
+                        <GradientStop Offset="0.0" Color="#3e2228" />
+                        <GradientStop Offset="1.0" Color="#2c2133" />
+                    </LinearGradientBrush>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#FFFFFF" />
@@ -47,6 +51,10 @@
                         <GradientStop Offset="0.0" Color="#fac8c1" />
                         <GradientStop Offset="1.0" Color="#fac1e9" />
                     </not_win:LinearGradientBrush>
+                    <LinearGradientBrush x:Key="NavigationViewDefaultPaneBackground" StartPoint="0.8,0" EndPoint="0.2,1">
+                        <GradientStop Offset="0.0" Color="#fac8c1" />
+                        <GradientStop Offset="1.0" Color="#fac1e9" />
+                    </LinearGradientBrush>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <Style x:Key="CustomPaneToggleButtonStyle" TargetType="Button">
@@ -191,14 +199,14 @@
             <winui:NavigationView.MenuItems>
                 <winui:NavigationViewItem Content="Summary">
                     <winui:NavigationViewItem.Icon>
-                        <BitmapIcon Foreground="Red" UriSource="/Assets/Icons/Summary.png" />
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="/Assets/Icons/Summary.png" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
                 <winui:NavigationViewItem Content="Favorites">
                     <winui:NavigationViewItem.Icon>
                         <BitmapIcon
                             Foreground="{ThemeResource SystemColorControlAccentBrush}"
-                            ShowAsMonochrome="True"
+                            ShowAsMonochrome="False"
                             UriSource="/Assets/Icons/Favorites.png" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
@@ -206,7 +214,7 @@
                     <winui:NavigationViewItem.Icon>
                         <BitmapIcon
                             Foreground="{ThemeResource SystemColorControlAccentBrush}"
-                            ShowAsMonochrome="True"
+                            ShowAsMonochrome="False"
                             UriSource="/Assets/Icons/Highlights.png" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>

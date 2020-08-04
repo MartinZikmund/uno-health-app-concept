@@ -44,6 +44,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Body.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Favorites.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />

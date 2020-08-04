@@ -306,10 +306,10 @@
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="viewmodels:HistoryItemViewModel">
                                 <Border
-                                    Padding="12"
+                                    Padding="16"
                                     Background="{ThemeResource HeaderBackgroundBrush}"
                                     CornerRadius="12">
-                                    <Grid RowSpacing="8">
+                                    <Grid RowSpacing="12">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
@@ -326,16 +326,21 @@
                                                 UriSource="/Assets/Icons/Dumbbell.png" />
                                             <TextBlock
                                                 VerticalAlignment="Center"
+                                                FontSize="14"
                                                 FontWeight="Bold"
                                                 Foreground="{ThemeResource SystemAccentColor}"
                                                 Text="{x:Bind Title}"
                                                 TextLineBounds="Tight" />
                                         </StackPanel>
-                                        <TextBlock Grid.Column="1" Foreground="#888">
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            FontSize="14"
+                                            FontWeight="SemiBold"
+                                            Foreground="#888">
                                             <Run Text="{x:Bind Time}" />
                                             <Run Text="&gt;" />
                                         </TextBlock>
-                                        <TextBlock Grid.Row="1">
+                                        <TextBlock Grid.Row="1" FontWeight="SemiBold">
                                             <Run FontSize="21" Text="{x:Bind Number}" />
                                             <Run
                                                 FontSize="14"

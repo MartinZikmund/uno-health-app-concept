@@ -2,11 +2,16 @@
     x:Class="HealthApp.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:HealthApp"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:viewmodels="using:HealthApp.Shared.ViewModels" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    mc:Ignorable="d">
+    xmlns:local="using:HealthApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:not_win="http:/uno.ui/not_win"
+    xmlns:toolkit="using:Uno.UI.Toolkit"
+    xmlns:viewmodels="using:HealthApp.Shared.ViewModels"
+    xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d not_win">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -14,12 +19,34 @@
                 <ResourceDictionary x:Key="Default">
                     <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#000000" />
                     <SolidColorBrush x:Key="ContentBackgroundBrush" Color="#1F1F1F" />
-                    <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" TintColor="#000000" BackgroundSource="HostBackdrop" TintOpacity="0.85" />
+                    <win:AcrylicBrush
+                        x:Key="NavigationViewExpandedPaneBackground"
+                        BackgroundSource="HostBackdrop"
+                        TintColor="#000000"
+                        TintOpacity="0.85" />
+                    <not_win:LinearGradientBrush
+                        x:Key="NavigationViewExpandedPaneBackground"
+                        StartPoint="0.8,0"
+                        EndPoint="0.2,1">
+                        <GradientStop Offset="0.0" Color="#3e2228" />
+                        <GradientStop Offset="1.0" Color="#2c2133" />
+                    </not_win:LinearGradientBrush>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#FFFFFF" />
                     <SolidColorBrush x:Key="ContentBackgroundBrush" Color="#F4F4F4" />
-                    <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" TintColor="#FFFFFF" BackgroundSource="HostBackdrop" TintOpacity="0.85" />
+                    <win:AcrylicBrush
+                        x:Key="NavigationViewExpandedPaneBackground"
+                        BackgroundSource="HostBackdrop"
+                        TintColor="#FFFFFF"
+                        TintOpacity="0.85" />
+                    <not_win:LinearGradientBrush
+                        x:Key="NavigationViewExpandedPaneBackground"
+                        StartPoint="0.8,0"
+                        EndPoint="0.2,1">
+                        <GradientStop Offset="0.0" Color="#fac8c1" />
+                        <GradientStop Offset="1.0" Color="#fac1e9" />
+                    </not_win:LinearGradientBrush>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <Style x:Key="CustomPaneToggleButtonStyle" TargetType="Button">
@@ -39,13 +66,13 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
                             <Grid
-                        x:Name="LayoutRoot"
-                        MinWidth="{TemplateBinding MinWidth}"
-                        Height="{TemplateBinding MinHeight}"
-                        Margin="0,8"
-                        Background="{TemplateBinding Background}"
-                        HorizontalAlignment="Stretch">
-
+                                x:Name="LayoutRoot"
+                                Height="{TemplateBinding MinHeight}"
+                                MinWidth="{TemplateBinding MinWidth}"
+                                Margin="0,8,0,8"
+                                HorizontalAlignment="Stretch"
+                                not_win:Padding="2,0,0,0"
+                                Background="{TemplateBinding Background}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="{ThemeResource PaneToggleButtonWidth}" />
                                     <ColumnDefinition Width="*" />
@@ -54,6 +81,36 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="{ThemeResource PaneToggleButtonHeight}" />
                                 </Grid.RowDefinitions>
+
+                                <Viewbox
+                                    x:Name="IconHost"
+                                    Width="16"
+                                    Height="16"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    AutomationProperties.AccessibilityView="Raw">
+
+                                    <TextBlock
+                                        x:Name="Icon"
+                                        AutomationProperties.AccessibilityView="Raw"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        Text="&#xE700;" />
+
+                                </Viewbox>
+
+                                <ContentPresenter
+                                    x:Name="ContentPresenter"
+                                    Grid.Column="1"
+                                    VerticalContentAlignment="Center"
+                                    AutomationProperties.AccessibilityView="Raw"
+                                    Content="{TemplateBinding Content}"
+                                    FontSize="{TemplateBinding FontSize}" />
+
+                                <Border
+                                    x:Name="RevealBorder"
+                                    Grid.ColumnSpan="2"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}" />
 
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
@@ -108,37 +165,6 @@
                                     </VisualStateGroup>
 
                                 </VisualStateManager.VisualStateGroups>
-
-                                <Viewbox
-                            x:Name="IconHost"
-                            Width="16"
-                            Height="16"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            AutomationProperties.AccessibilityView="Raw">
-
-                                    <TextBlock
-                                x:Name="Icon"
-                                Text="&#xE700;"
-                                FontSize="{TemplateBinding FontSize}"
-                                AutomationProperties.AccessibilityView="Raw"/>
-
-                                </Viewbox>
-
-                                <ContentPresenter
-                            x:Name="ContentPresenter"
-                            VerticalContentAlignment="Center"
-                            Content="{TemplateBinding Content}"
-                            FontSize="{TemplateBinding FontSize}"
-                            Grid.Column="1"
-                            AutomationProperties.AccessibilityView="Raw"/>
-
-                                <Border
-                            x:Name="RevealBorder"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Grid.ColumnSpan="2"/>
-
                             </Grid>
 
                         </ControlTemplate>
@@ -149,6 +175,181 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <winui:NavigationView
+            x:Name="NavigationMenu"
+            AlwaysShowHeader="True"
+            Background="{ThemeResource ContentBackgroundBrush}"
+            CompactModeThresholdWidth="768"
+            ExpandedModeThresholdWidth="768"
+            IsBackButtonVisible="Collapsed"
+            IsSettingsVisible="False"
+            IsTitleBarAutoPaddingEnabled="False"
+            PaneToggleButtonStyle="{StaticResource CustomPaneToggleButtonStyle}">
+            <winui:NavigationView.PaneHeader>
+                <Grid Height="48" Background="Transparent" />
+            </winui:NavigationView.PaneHeader>
+            <winui:NavigationView.MenuItems>
+                <winui:NavigationViewItem Content="Summary">
+                    <winui:NavigationViewItem.Icon>
+                        <BitmapIcon Foreground="Red" UriSource="/Assets/Icons/Summary.png" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+                <winui:NavigationViewItem Content="Favorites">
+                    <winui:NavigationViewItem.Icon>
+                        <BitmapIcon
+                            Foreground="{ThemeResource SystemColorControlAccentBrush}"
+                            ShowAsMonochrome="True"
+                            UriSource="/Assets/Icons/Favorites.png" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+                <winui:NavigationViewItem Content="Highlights">
+                    <winui:NavigationViewItem.Icon>
+                        <BitmapIcon
+                            Foreground="{ThemeResource SystemColorControlAccentBrush}"
+                            ShowAsMonochrome="True"
+                            UriSource="/Assets/Icons/Highlights.png" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+                <winui:NavigationViewItemSeparator />
+                <winui:NavigationViewItem Content="Activity">
+                    <winui:NavigationViewItem.Icon>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="/Assets/Icons/Dumbbell.png" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+                <winui:NavigationViewItem Content="Body">
+                    <winui:NavigationViewItem.Icon>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="/Assets/Icons/Body.png" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+                <winui:NavigationViewItem Content="Hearing">
+                    <winui:NavigationViewItem.Icon>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="/Assets/Icons/Ear.png" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+                <winui:NavigationViewItem Content="Heart">
+                    <winui:NavigationViewItem.Icon>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="/Assets/Icons/Heart.png" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+                <winui:NavigationViewItem Content="Respiratory">
+                    <winui:NavigationViewItem.Icon>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="/Assets/Icons/Breath.png" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+                <winui:NavigationViewItem Content="Sleep">
+                    <winui:NavigationViewItem.Icon>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="/Assets/Icons/Sleep.png" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+            </winui:NavigationView.MenuItems>
+            <winui:NavigationView.PaneFooter>
+                <Grid Margin="48,12">
+                    <controls:RadialProgressBar
+                        Width="120"
+                        Height="120"
+                        Maximum="100"
+                        Thickness="8"
+                        Value="85" />
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="24"
+                            FontWeight="SemiBold"
+                            Text="7,810"
+                            TextAlignment="Center" />
+                        <TextBlock
+                            Opacity="0.5"
+                            Text="10,000"
+                            TextAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+            </winui:NavigationView.PaneFooter>
+            <winui:NavigationView.Content>
+                <Grid RowSpacing="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border toolkit:VisibleBoundsPadding.PaddingMask="All" Background="{ThemeResource HeaderBackgroundBrush}">
+                        <Grid
+                            x:Name="HeaderBlock"
+                            Height="56"
+                            Padding="16,0"
+                            VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                FontWeight="SemiBold"
+                                Style="{ThemeResource TitleTextBlockStyle}"
+                                Text="Activity" />
+                        </Grid>
+                    </Border>
+
+                    <ListView
+                        Grid.Row="1"
+                        Margin="4,0,4,0"
+                        IsItemClickEnabled="True"
+                        ItemsSource="{x:Bind ViewModel.Items}"
+                        SelectionMode="None">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="Margin" Value="12" />
+                                <Setter Property="Padding" Value="0" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="viewmodels:HistoryItemViewModel">
+                                <Border
+                                    Padding="12"
+                                    Background="{ThemeResource HeaderBackgroundBrush}"
+                                    CornerRadius="12">
+                                    <Grid RowSpacing="8">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <BitmapIcon
+                                                Width="20"
+                                                Height="20"
+                                                ShowAsMonochrome="False"
+                                                UriSource="/Assets/Icons/Dumbbell.png" />
+                                            <TextBlock
+                                                VerticalAlignment="Center"
+                                                FontWeight="Bold"
+                                                Foreground="{ThemeResource SystemAccentColor}"
+                                                Text="{x:Bind Title}"
+                                                TextLineBounds="Tight" />
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="1" Foreground="#888">
+                                            <Run Text="{x:Bind Time}" />
+                                            <Run Text="&gt;" />
+                                        </TextBlock>
+                                        <TextBlock Grid.Row="1">
+                                            <Run FontSize="21" Text="{x:Bind Number}" />
+                                            <Run
+                                                FontSize="14"
+                                                Foreground="#888"
+                                                Text="{x:Bind Unit}" />
+                                        </TextBlock>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </winui:NavigationView.Content>
+        </winui:NavigationView>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
@@ -169,123 +370,5 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <winui:NavigationView x:Name="NavigationMenu" PaneToggleButtonStyle="{StaticResource CustomPaneToggleButtonStyle}" CompactModeThresholdWidth="768" ExpandedModeThresholdWidth="768" IsSettingsVisible="False" IsTitleBarAutoPaddingEnabled="False" AlwaysShowHeader="True" IsBackButtonVisible="Collapsed" Background="{ThemeResource ContentBackgroundBrush}">
-            <winui:NavigationView.PaneHeader>
-                <Grid Background="Transparent" Height="48" />
-            </winui:NavigationView.PaneHeader>
-            <winui:NavigationView.MenuItems>
-                <winui:NavigationViewItem Content="Summary">
-                    <winui:NavigationViewItem.Icon>
-                        <BitmapIcon UriSource="/Assets/Icons/Summary.png" ShowAsMonochrome="False" />
-                    </winui:NavigationViewItem.Icon>
-                </winui:NavigationViewItem>
-                <winui:NavigationViewItem Content="Favorites" >
-                    <winui:NavigationViewItem.Icon>
-                        <BitmapIcon UriSource="/Assets/Icons/Favorites.png" ShowAsMonochrome="False" />
-                    </winui:NavigationViewItem.Icon>
-                </winui:NavigationViewItem>
-                <winui:NavigationViewItem Content="Highlights" >
-                    <winui:NavigationViewItem.Icon>
-                        <BitmapIcon UriSource="/Assets/Icons/Highlights.png" ShowAsMonochrome="False" />
-                    </winui:NavigationViewItem.Icon>
-                </winui:NavigationViewItem>
-                <winui:NavigationViewItemSeparator />
-                <winui:NavigationViewItem Content="Activity" >
-                    <winui:NavigationViewItem.Icon>
-                        <BitmapIcon UriSource="/Assets/Icons/Dumbbell.png" ShowAsMonochrome="False" />
-                    </winui:NavigationViewItem.Icon>
-                </winui:NavigationViewItem>
-                <winui:NavigationViewItem Content="Body" >
-                    <winui:NavigationViewItem.Icon>
-                        <BitmapIcon UriSource="/Assets/Icons/Body.png" ShowAsMonochrome="False" />
-                    </winui:NavigationViewItem.Icon>
-                </winui:NavigationViewItem>
-                <winui:NavigationViewItem Content="Hearing" >
-                    <winui:NavigationViewItem.Icon>
-                        <BitmapIcon UriSource="/Assets/Icons/Ear.png" ShowAsMonochrome="False" />
-                    </winui:NavigationViewItem.Icon>
-                </winui:NavigationViewItem>
-                <winui:NavigationViewItem Content="Heart">
-                    <winui:NavigationViewItem.Icon>
-                        <BitmapIcon UriSource="/Assets/Icons/Heart.png" ShowAsMonochrome="False" />
-                    </winui:NavigationViewItem.Icon>
-                </winui:NavigationViewItem>
-                <winui:NavigationViewItem Content="Respiratory">
-                    <winui:NavigationViewItem.Icon>
-                        <BitmapIcon UriSource="/Assets/Icons/Breath.png" ShowAsMonochrome="False" />
-                    </winui:NavigationViewItem.Icon>
-                </winui:NavigationViewItem>
-                <winui:NavigationViewItem Content="Sleep">
-                    <winui:NavigationViewItem.Icon>
-                        <BitmapIcon UriSource="/Assets/Icons/Sleep.png" ShowAsMonochrome="False" />
-                    </winui:NavigationViewItem.Icon>
-                </winui:NavigationViewItem>
-            </winui:NavigationView.MenuItems>
-            <winui:NavigationView.PaneFooter>
-                <Grid Margin="48,0">
-                    <controls:RadialProgressBar Width="120" Height="120" Thickness="10" Value="85" Maximum="100" />
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Text="7,810" TextAlignment="Center" FontSize="24" FontWeight="SemiBold" />
-                        <TextBlock Text="10,000" Opacity="0.5" TextAlignment="Center" />
-                    </StackPanel>
-                </Grid>
-            </winui:NavigationView.PaneFooter>
-            <winui:NavigationView.Content>
-                <Grid RowSpacing="16">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Border Height="56" Background="{ThemeResource HeaderBackgroundBrush}">
-                        <Grid x:Name="HeaderBlock" Padding="16,0" VerticalAlignment="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock VerticalAlignment="Center" Text="Activity" Grid.Column="1" FontWeight="SemiBold" Style="{ThemeResource TitleTextBlockStyle}" FontSize="24" />
-                        </Grid>
-                    </Border>
-
-                    <ListView Grid.Row="1" SelectionMode="None" IsItemClickEnabled="True" ItemsSource="{x:Bind ViewModel.Items}">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                <Setter Property="Margin" Value="12" />
-                                <Setter Property="Padding" Value="0" />
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="viewmodels:HistoryItemViewModel">
-                                <Border Padding="12" CornerRadius="12" Background="{ThemeResource HeaderBackgroundBrush}">
-                                    <Grid RowSpacing="8">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Orientation="Horizontal" Spacing="8">
-                                            <BitmapIcon ShowAsMonochrome="False" UriSource="/Assets/Icons/Dumbbell.png" Width="20" Height="20" />
-                                            <TextBlock VerticalAlignment="Center" TextLineBounds="Tight" FontWeight="Bold" Foreground="{ThemeResource SystemAccentColor}" Text="{x:Bind Title}" />
-                                        </StackPanel>
-                                        <TextBlock Grid.Column="1">
-                                            <Run Text="{x:Bind Time}" />
-                                            <Run Text=">" />
-                                        </TextBlock>
-                                        <TextBlock Grid.Row="1">
-                                            <Run Text="{x:Bind Number}" FontSize="21" />
-                                            <Run Text="{x:Bind Unit}" FontSize="14" />
-                                        </TextBlock>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
-            </winui:NavigationView.Content>
-        </winui:NavigationView>
     </Grid>
 </Page>

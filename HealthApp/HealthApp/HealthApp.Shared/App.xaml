@@ -10,6 +10,8 @@
             </ResourceDictionary.MergedDictionaries>
             <Color x:Key="SystemAccentColor">#E64A19</Color>
             <SolidColorBrush x:Key="SystemColorControlAccentBrush" Color="#E64A19" />
+            <SolidColorBrush x:Key="SystemControlForegroundAccentBrush" Color="#E64A19" />
+            <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="#E64A19" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
